@@ -1,87 +1,106 @@
 import streamlit as st
 
-# Configure the browser tab title and a cute heart icon
-st.set_page_config(page_title="For My Wife ❤️", page_icon="💖", layout="centered")
+# Configure the browser tab
+st.set_page_config(page_title="For You", page_icon="🐈", layout="centered")
 
-# --- ROMANTIC STYLING CODE ---
+# --- COOL MINIMALIST STYLING CODE ---
 st.markdown("""
     <style>
-    /* Gradient romantic background */
+    /* Sleek charcoal background */
     .stApp { 
-        background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%); 
+        background-color: #1e1e24 !important;
     }
-    /* The romantic display box */
-    .romantic-box {
-        background-color: rgba(255, 255, 255, 0.85);
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0px 10px 30px rgba(255, 75, 115, 0.2);
+    
+    /* Center alignment and clean typography */
+    .content-wrapper {
         text-align: center;
-        border: 2px solid #ff8fab;
-        margin-top: 20px;
+        margin-top: 50px;
+    }
+    
+    /* Cool text style (Crisp white with a hint of romantic coral-red instead of bright pink) */
+    .cool-text { 
+        font-size: 32px !important; 
+        color: #ffffff !important; 
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        letter-spacing: 1px;
         margin-bottom: 20px;
     }
-    /* Make your text look large and beautiful */
-    .romantic-text { 
-        font-size: 28px !important; 
-        color: #ff477e !important; 
-        font-weight: bold;
-        font-family: 'Microsoft YaHei', sans-serif;
-    }
-    /* Pretty pink next button */
+    
+    /* Sleek minimalist button */
     div.stButton > button:first-child {
-        background-color: #ff477e !important; 
-        color: white !important;
-        border-radius: 25px !important;
-        border: none !important;
-        padding: 10px 30px !important;
-        font-size: 18px !important;
+        background-color: transparent !important; 
+        color: #a3e635 !important; /* Cool neon lime accent */
+        border: 2px solid #a3e635 !important;
+        border-radius: 8px !important;
+        padding: 8px 24px !important;
+        font-size: 16px !important;
+        font-family: 'Courier New', Courier, monospace;
         font-weight: bold !important;
+        transition: all 0.2s ease-in-out;
     }
+    
     div.stButton > button:first-child:hover {
-        background-color: #ff7096 !important;
+        background-color: #a3e635 !important;
+        color: #1e1e24 !important;
+        box-shadow: 0px 0px 15px rgba(163, 230, 53, 0.4);
     }
-    /* Completely hide Streamlit's default header and padding at the very top */
+    
+    /* Monospace style specifically for your flower art */
+    .flower-art {
+        color: #ff758f !important;
+        font-family: monospace !important;
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+        background: transparent !important;
+        display: inline-block;
+        text-align: left;
+    }
+
+    /* Hide standard Streamlit header clutter */
     header {visibility: hidden;}
-    .main .block-container {padding-top: 2rem;}
+    .main .block-container {padding-top: 3rem;}
     </style>
 """, unsafe_allow_html=True)
 
-# Initialize page
+# Initialize page state
 if "page" not in st.session_state: 
     st.session_state.page = 1
 
-# Open the beautiful white box
-st.markdown('<div class="romantic-box">', unsafe_allow_html=True)
+# Open our clean content container
+st.markdown('<div class="content-wrapper">', unsafe_allow_html=True)
 
-# Content mapping (Only your exact text)
+# 🐈 Add the cute animated cat at the top of the webpage
+# This is a transparent animated cat pixel art that works perfectly on dark backgrounds
+st.image("https://giphy.com", width=120)
+
+# Content mapping (Your exact words)
 pages = {
-    1: "Hello World! Welcome to my website.",
-    2: "Hello 老婆",
-    3: "我爱你",
-    4: "想和你约会",
-    5: """🌷🌸🌷🌸
+    1: "Hello 老婆",
+    2: "我爱你",
+    3: "想和你约会",
+    4: """🌷🌸🌷🌸
 🌸🌷🌸🌷🌸
  Λ🌷🌸🌷🌸🌷
 ( ˘ ᵕ ˘🌷🌸🌷
  ヽ つ＼ ／ UU 
     / 🎀 \ """,
-    6: "爱你宝贝",
-    7: "好爱你"
+    5: "爱你宝贝",
+    6: "好爱你"
 }
 
 text = pages[st.session_state.page]
 
-# Display your code or your text based on the page
+# Display text safely based on the page
 if st.session_state.page == 5:
-    st.text(text)
+    st.markdown(f'<pre class="flower-art">{text}</pre>', unsafe_allow_html=True)
 else:
-    st.markdown(f'<p class="romantic-text">{text}</p>', unsafe_allow_html=True)
+    st.markdown(f'<p class="cool-text">{text}</p>', unsafe_allow_html=True)
 
-# Close the white box
+# Close our content container
 st.markdown('</div>', unsafe_allow_html=True)
     
-# Next Button
-if st.button("Next ➡️"):
+# Clean Next Button
+if st.button("NEXT >"):
     st.session_state.page = (st.session_state.page % 7) + 1
     st.rerun()
