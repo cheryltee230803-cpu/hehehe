@@ -70,11 +70,10 @@ if "page" not in st.session_state:
 # Open our clean content container
 st.markdown('<div class="content-wrapper">', unsafe_allow_html=True)
 
-# 🐈 Add the cute animated cat at the top of the webpage
-# This is a transparent animated cat pixel art that works perfectly on dark backgrounds
+# 🐈 The cute cat animation asset
 st.image("https://giphy.com", width=120)
 
-# Content mapping (Your exact words)
+# Content mapping (Starts directly with "Hello 老婆")
 pages = {
     1: "Hello 老婆",
     2: "我爱你",
@@ -89,10 +88,11 @@ pages = {
     6: "好爱你"
 }
 
-text = pages[st.session_state.page]
+# Safely fetch the current page text without exceeding page 6 boundaries
+text = pages.get(st.session_state.page, "好爱你")
 
-# Display text safely based on the page
-if st.session_state.page == 5:
+# Display text safely based on the page (Flower art is now on page 4)
+if st.session_state.page == 4:
     st.markdown(f'<pre class="flower-art">{text}</pre>', unsafe_allow_html=True)
 else:
     st.markdown(f'<p class="cool-text">{text}</p>', unsafe_allow_html=True)
@@ -102,5 +102,9 @@ st.markdown('</div>', unsafe_allow_html=True)
     
 # Clean Next Button
 if st.button("NEXT >"):
-    st.session_state.page = (st.session_state.page % 7) + 1
+    # Mathematically caps at page 6 and cycles properly back to 1
+    if st.session_state.page < 6:
+        st.session_state.page += 1
+    else:
+        st.session_state.page = 1
     st.rerun()
