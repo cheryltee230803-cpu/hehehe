@@ -17,14 +17,21 @@ st.markdown("""
         margin-top: 50px;
     }
     
-    /* Cool text style (Crisp white with a hint of romantic coral-red instead of bright pink) */
+    /* Massive cute cat styling */
+    .cat-display {
+        font-size: 80px !important;
+        margin-bottom: 10px;
+        display: block;
+    }
+    
+    /* Cool text style (Crisp white with a monospace look) */
     .cool-text { 
         font-size: 32px !important; 
         color: #ffffff !important; 
         font-weight: bold;
         font-family: 'Courier New', Courier, monospace;
         letter-spacing: 1px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
     
     /* Sleek minimalist button */
@@ -59,8 +66,8 @@ if "page" not in st.session_state:
 # Open our clean content container
 st.markdown('<div class="content-wrapper">', unsafe_allow_html=True)
 
-# 🐈 The cute cat animation asset
-st.image("https://giphy.com", width=120)
+# 🐈 Render a giant text-based cat emoji. Safe from external link crashes!
+st.markdown('<span class="cat-display">🐈‍⬛</span>', unsafe_allow_html=True)
 
 # Content mapping
 pages = {
@@ -82,10 +89,8 @@ text = pages.get(st.session_state.page, "好爱你")
 
 # Display text safely based on the page
 if st.session_state.page == 4:
-    # st.text preserves line breaks and multi-line sequences exactly as typed
     st.text(text)
-    # Added a slight margin after the text box for spacing before the button
-    st.markdown('<div style="margin-bottom: 20px;"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="margin-bottom: 25px;"></div>', unsafe_allow_html=True)
 else:
     st.markdown(f'<p class="cool-text">{text}</p>', unsafe_allow_html=True)
 
