@@ -6,16 +6,9 @@ st.set_page_config(page_title="For You", page_icon="🐈", layout="centered")
 # --- COOL MINIMALIST STYLING CODE ---
 st.markdown("""
     <style>
-    /* Sleek charcoal background */
     .stApp { background-color: #1e1e24 !important; }
-    
-    /* Center alignment and clean typography */
     .content-wrapper { text-align: center; margin-top: 50px; }
-    
-    /* Massive cute cat styling */
     .cat-display { font-size: 80px !important; margin-bottom: 10px; display: block; }
-    
-    /* Cool text style (Crisp white with a monospace look) */
     .cool-text { 
         font-size: 32px !important; 
         color: #ffffff !important; 
@@ -24,27 +17,20 @@ st.markdown("""
         letter-spacing: 1px;
         margin-bottom: 25px;
     }
-    
-    /* Sleek minimalist button */
     div.stButton > button:first-child {
         background-color: transparent !important; 
-        color: #a3e635 !important; /* Cool neon lime accent */
+        color: #a3e635 !important;
         border: 2px solid #a3e635 !important;
         border-radius: 8px !important;
         padding: 8px 24px !important;
         font-size: 16px !important;
         font-family: 'Courier New', Courier, monospace;
         font-weight: bold !important;
-        transition: all 0.2s ease-in-out;
     }
-    
     div.stButton > button:first-child:hover {
         background-color: #a3e635 !important;
         color: #1e1e24 !important;
-        box-shadow: 0px 0px 15px rgba(163, 230, 53, 0.4);
     }
-
-    /* Hide standard Streamlit header clutter */
     header {visibility: hidden;}
     .main .block-container {padding-top: 3rem;}
     </style>
@@ -54,51 +40,38 @@ st.markdown("""
 if "page" not in st.session_state: 
     st.session_state.page = 1
 
-# Open our clean content container
+# Layout Wrapper
 st.markdown('<div class="content-wrapper">', unsafe_allow_html=True)
-
-# 🐈 Render a giant text-based cat emoji.
 st.markdown('<span class="cat-display">🐈‍⬛</span>', unsafe_allow_html=True)
 
-# Content mapping (Fixed the missing comma after page 8)
+# Content mapping
 pages = {
     1: "Hello 老婆",
     2: "我爱你",
     3: "想和你约会",
-    4: """🌷🌸🌷🌸
-🌸🌷🌸🌷🌸
- Λ🌷🌸🌷🌸🌷
-( ˘ ᵕ ˘🌷🌸🌷
- ヽ つ＼ ／ UU 
-    / 🎀 \ """,
+    4: """🌷🌸🌷🌸\n🌸🌷🌸🌷🌸\n Λ🌷🌸🌷🌸🌷\n( ˘ ᵕ ˘🌷🌸🌷\n ヽ つ＼ ／ UU \n    / 🎀 \ """,
     5: "爱你宝贝",
     6: "好爱你",
     7: "好想你",
-    8: """... .  
-    /\_ /\  /\ _ /\
-   (,, ´∀`,,) W<   )--♡
-     /︵  づ⊂︵ \  ...""",
+    8: """⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠔⠶⠒⠉⠈⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠪⣦⢄⣀⡠⠁⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣤⣤⣤⣄⣀⣀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀⣰⣶⣶⣦⠶⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠉⠉⢷⡔⠒⠚⢽⠃⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣰⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⢅⢰⣾⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⣀⡴⠞⠛⠉⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣧⠀⠀⠀⠀⠀\n⠀⣀⣀⣤⣤⡞⠋⠀⠀⠀⢠⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡇⠀⠀⠀⠀\n⢸⡏⠉⣴⠏⠀⠀⠀⠀⠀⢸⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀\n⠈⣧⢰⠏⠀⠀⠀⠀⠀⠀⢸⡆⠀⠀⠀⠀⠀⠀⠀⠀⠰⠯⠥⠠⠒⠄⠀⠀⠀⠀⠀⠀⢠⠀⣿⠀⠀⠀⠀\n⠀⠈⣿⠀⠀⠀⠀⠀⠀⠀⠈⡧⢀⢻⠿⠀⠲⡟⣞⠀⠀⠀⠀⠈⠀⠁⠀⠀⠀⠀⠀⢀⠆⣰⠇⠀⠀⠀⠀\n⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⣧⡀⠃⠀⠀⠀⠱⣼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣂⡴⠋⠀⣀⡀⠀⠀\n⠀⠀⢹⡄⠀⠀⠀⠀⠀⠀⠀⠹⣜⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠒⠿⡻⢦⣄⣰⠏⣿⠀⠀\n⠀⠀⠀⢿⡢⡀⠀⠀⠀⠀⠀⠀⠙⠳⢮⣥⣤⣤⠶⠖⠒⠛⠓⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢌⢻⣴⠏⠀⠀\n⠀⠀⠀⠀⠻⣮⣒⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⣤⣀⣀⣀⣤⡴⠖⠛⢻⡆⠀⠀⠀⠀⠀⠀⢣⢻⡄⠀⠀\n⠀⠀⠀⠀⠀⠀⠉⠛⠒⠶⠶⡶⢶⠛⠛⠁⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⠞⠁⠀⠀⠀⠀⠀⠀⠈⢜⢧⣄⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠃⠇⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠉⢻⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠉⠈⣷\n⠀⠀⠀⠀⠀⠀⠀⣼⠟⠷⣿⣸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠲⠶⢶⣶⠶⠶⢛⣻⠏⠙⠛⠛⠛⠁\n⠀⠀⠀⠀⠀⠀⠀⠈⠷⣤⣀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠉⠛⠓⠚⠋⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣟⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢹⡟⡟⢻⡟⠛⢻⡄⠀⠀⣸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠈⠷⠧⠾⠀⠀⠀⠻⣦⡴⠏⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀""",
     9: "byebye"
 }
 
-# Safely fetch the current page text
 text = pages.get(st.session_state.page, "好爱你")
 
-# Display text based on the page
+# Display logic
 if st.session_state.page == 4:
     st.text(text)
     st.markdown('<p class="cool-text">给你花花</p>', unsafe_allow_html=True)
 elif st.session_state.page == 8:
-    st.text(text)
+    st.text(text) # Preserves art alignment
 else:
     st.markdown(f'<p class="cool-text">{text}</p>', unsafe_allow_html=True)
 
-# Close our content container
 st.markdown('</div>', unsafe_allow_html=True)
     
-# Clean Next Button
+# Navigation
 if st.button("NEXT >"):
-    # Upgraded limit to 9 so it flows smoothly through every single screen!
     if st.session_state.page < 9:
         st.session_state.page += 1
     else:
