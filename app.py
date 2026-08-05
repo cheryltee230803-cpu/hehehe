@@ -45,17 +45,6 @@ st.markdown("""
         color: #1e1e24 !important;
         box-shadow: 0px 0px 15px rgba(163, 230, 53, 0.4);
     }
-    
-    /* Monospace style specifically for your flower art */
-    .flower-art {
-        color: #ff758f !important;
-        font-family: monospace !important;
-        font-size: 18px !important;
-        line-height: 1.2 !important;
-        background: transparent !important;
-        display: inline-block;
-        text-align: left;
-    }
 
     /* Hide standard Streamlit header clutter */
     header {visibility: hidden;}
@@ -73,7 +62,7 @@ st.markdown('<div class="content-wrapper">', unsafe_allow_html=True)
 # 🐈 The cute cat animation asset
 st.image("https://giphy.com", width=120)
 
-# Content mapping (Starts directly with "Hello 老婆")
+# Content mapping
 pages = {
     1: "Hello 老婆",
     2: "我爱你",
@@ -88,12 +77,15 @@ pages = {
     6: "好爱你"
 }
 
-# Safely fetch the current page text without exceeding page 6 boundaries
+# Safely fetch the current page text
 text = pages.get(st.session_state.page, "好爱你")
 
-# Display text safely based on the page (Flower art is now on page 4)
+# Display text safely based on the page
 if st.session_state.page == 4:
-    st.markdown(f'<pre class="flower-art">{text}</pre>', unsafe_allow_html=True)
+    # st.text preserves line breaks and multi-line sequences exactly as typed
+    st.text(text)
+    # Added a slight margin after the text box for spacing before the button
+    st.markdown('<div style="margin-bottom: 20px;"></div>', unsafe_allow_html=True)
 else:
     st.markdown(f'<p class="cool-text">{text}</p>', unsafe_allow_html=True)
 
@@ -102,7 +94,6 @@ st.markdown('</div>', unsafe_allow_html=True)
     
 # Clean Next Button
 if st.button("NEXT >"):
-    # Mathematically caps at page 6 and cycles properly back to 1
     if st.session_state.page < 6:
         st.session_state.page += 1
     else:
