@@ -65,8 +65,7 @@ pages = {
     1: "Hello 老婆",
     2: "我爱你",
     3: "想和你约会",
-    4: """给你花花
-    🌷🌸🌷🌸
+    4: """🌷🌸🌷🌸
 🌸🌷🌸🌷🌸
  Λ🌷🌸🌷🌸🌷
 ( ˘ ᵕ ˘🌷🌸🌷
@@ -101,10 +100,15 @@ pages = {
 }
 
 # Safely fetch the current page text
-text = pages.get(st.session_state.page, "好想你")
+text = pages.get(st.session_state.page, "好爱你")
 
-# Display text safely based on the page (Pages 4 and 8 are both multiline text layouts)
-if st.session_state.page in [4, 8]:
+# Display text safely based on the page
+if st.session_state.page == 4:
+    st.text(text)
+    # Extra Chinese sentence right underneath the bouquet emoji art
+    st.markdown('<p class="cool-text">给你花花</p>', unsafe_allow_html=True)
+    st.markdown('<div style="margin-bottom: 25px;"></div>', unsafe_allow_html=True)
+elif st.session_state.page == 8:
     st.text(text)
     st.markdown('<div style="margin-bottom: 25px;"></div>', unsafe_allow_html=True)
 else:
@@ -115,7 +119,7 @@ st.markdown('</div>', unsafe_allow_html=True)
     
 # Clean Next Button
 if st.button("NEXT >"):
-    # Dynamically scales to 8 total text frames
+    # Steps all the way through page 8 and loops cleanly back to page 1
     if st.session_state.page < 8:
         st.session_state.page += 1
     else:
