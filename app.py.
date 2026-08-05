@@ -22,7 +22,7 @@ elif st.session_state.page == 5:
     / 🎀 \ """)
 elif st.session_state.page == 6:
     st.write("爱你宝贝")
-elif st.session_state.page == 6:
+elif st.session_state.page == 7:
     st.write("好爱你")
     
 # Create the "Next" button
